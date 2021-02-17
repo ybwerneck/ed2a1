@@ -1,0 +1,36 @@
+# depslib dependency file v1.0
+1613543720 source:c:\users\yanbw\source\repos\hash\balde.cpp
+	<iostream>
+	"Balde.h"
+	"Diretorio.h"
+
+1613338028 c:\users\yanbw\source\repos\hash\balde.h
+	<iostream>
+	<string>
+
+1613342193 c:\users\yanbw\source\repos\hash\diretorio.h
+	<iostream>
+	"Balde.h"
+	"utils.h"
+
+1613335822 c:\users\yanbw\source\repos\hash\utils.h
+	<iostream>
+	<time.h>
+
+1613544074 source:c:\users\yanbw\source\repos\hash\diretorio.cpp
+	<iostream>
+	<math.h>
+	"Diretorio.h"
+
+1613544321 source:c:\users\yanbw\source\repos\hash\hash.cpp
+	<iostream>
+	"Diretorio.h"
+	"utils.h"
+	<cmath>
+	"stdio.h"
+
+1613544338 source:c:\users\yanbw\source\repos\hash\utils.cpp
+	<iostream>
+	<cmath>
+	"utils.h"
+

@@ -10,10 +10,9 @@ Balde::Balde(int n,Diretorio* d,int M) {
     dLocal = 1;
     numeroBytes = n;
     cargaMax = M;
-    k =(std::string*) new std::string[cargaMax];
-    for (int i = 0; i < cargaMax; i++)
-        k[i] = std::string("");//inicializa o balde vazio
-
+    k.resize(M);
+    for (int i = 0; i < M; i++) 
+        k[i] = "";
 }
 int Balde::busca(std::string chave) {
 
@@ -28,23 +27,23 @@ bool Balde::remove(std::string chave) {
 
     int indice = busca(chave);
     if (indice == -1) return false;
-    k[indice] = "";
+    k[indice]="";
     cargaDo();
     return true;
 }
 
-void Balde::insere(std::string chave) {
+bool Balde::insere(std::string chave) {
     
     if (cargaMax > carga)
-        for (int i = 0; i < cargaMax; i++)
-        {
-            if (k[i] == "") {
-                k[i] = chave;
-                    break;
-            }
-        }
-    cargaUp();
     
+        for (int i = 0; i < cargaMax; i++) {
+            if ("" == k[i]){
+                cargaUp();
+                k[i] = chave;
+                return true;
+        }
+    } 
+    return false;
         
 }
 bool Balde::hasSpace() { return cargaMax >carga; }
@@ -68,9 +67,10 @@ int Balde::reInsert(std::string subchave) {
     return aux;
 }
 void Balde::print() {
-    std::cout << "--------Balde" << id << "----------" << std::endl;
-        for (int i = 0; i < cargaMax; i++) {
-            printf("%s \n", k[i].c_str()); //cout nao estava parando no \0, solucao encontrada foi usar o printf com o vetor de caracteres do c_str
+    std::cout << "--------Balde" << id << "------ Profundidade" << dLocal << "----" << std::endl;
+    for (int i = 0; i < k.size(); i++) {
+      
+        if(k[i]!="")printf("%s \n", k[i].c_str()); //cout nao estava parando no \0, solucao encontrada foi usar o printf com o vetor de caracteres do c_str
     }
 
 

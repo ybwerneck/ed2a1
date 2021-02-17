@@ -1,8 +1,10 @@
 #include<iostream>
+#include <cmath>
+
 #include "utils.h"
 std::string integerToByte(int n, int numBytes) {
 	int num= n;
-	std::string k = std::string("", numBytes);//inicializa o balde vazio
+	std::string k = std::string(" ", numBytes);//inicializa o balde vazio
 
 	int i=0;
 	for (int aux = num; aux > 0 ; i++){

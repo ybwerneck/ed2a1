@@ -40,25 +40,20 @@ bool Diretorio::split(std::string subchave) {
 	Balde* baldeNovo = new Balde(nB,this,M);
 	
 	int meio = indiceInicial + indicesafetados / 2;
-	if((indexBalde-indiceInicial)<=meio) //verifica se o balde novo vem antes ou depois do antigo
-		for (int i = indiceInicial; i < indicesafetados+indiceInicial; i++) {
-
-			baldes[i ] = (i<meio) ? baldeAntigo : baldeNovo;
-		}
-	else
-		for (int i = 0; i < indicesafetados; i++) {
+	for (int i = indiceInicial; i < indicesafetados + indiceInicial; i++) {
 
 			baldes[i ] = (i <meio) ? baldeNovo: baldeAntigo ;
 		}
 	baldeNovo->setDlocal(baldeAntigo->getDlocal() + 1);
 	baldeAntigo->setDlocal(baldeAntigo->getDlocal() + 1);
     
-	baldeAntigo->reInsert(subchave);
+	baldeAntigo->reInsert(aux);
 
 
 	return true;
 }
 bool Diretorio::insere(std::string chave) {
+
 	if (busca(chave))
 		return false; //nao insere chaves repetidas
 	std::string aux = chave.substr(0, dGlobal); //primerios n bits significantes, n= profundidade globa
@@ -77,6 +72,7 @@ bool Diretorio::insere(std::string chave) {
 	}
 	else if (aprofundar())
 		return insere(chave);
+
 	std::cout << "tabela cheia!";
 	return false;
 }
@@ -88,9 +84,9 @@ void Diretorio::printdir() {
 	}
 }
 bool Diretorio::busca(std::string chave) {
-	std::string aux = chave.substr(0, dGlobal); //primerios n bits significantes, n= profundidade globa
+	std::string aux = chave.substr(0, dGlobal); //primerios n bits significantes
 	int indexBalde = bytesToInteger(aux);
-	Balde* b = baldes[indexBalde];
+	Balde* b = baldes[indexBalde]; baldes[1];
 	return b->busca(chave)!=-1;
 }
 bool Diretorio::aprofundar() {
@@ -104,6 +100,7 @@ bool Diretorio::aprofundar() {
 			balden[k++] = baldes[i];
 			balden[k++] = baldes[i];
 	}
+		nBalde = pow(2, dGlobal);
 		baldes = balden;
 		return true;
 }

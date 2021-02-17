@@ -1,13 +1,13 @@
 #pragma once
 #include <iostream>
 #include <string> 
-
+#include <vector>
 class Diretorio;
 
 class Balde
 {
 	int id;
-	std::string* k;
+	std::vector<std::string> k{ };
 	int dLocal;
 	int carga = 0; 
 	int cargaMax;
@@ -21,7 +21,7 @@ public:
 	static int cargaCounter;
 
 	int busca(std::string chave);
-	void insere(std::string chave);
+	bool insere(std::string chave);
 	bool remove(std::string chave);
 	int reInsert(std::string subchave); //remove todo os elementos que os primeiros bits significativos são os mesmo que a subchave e os adiciona novamente no diretorio
 	bool hasSpace();
