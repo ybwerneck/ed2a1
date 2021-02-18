@@ -2,11 +2,9 @@
 #include <iostream>
 #include "Balde.h"
 #include "Diretorio.h"
-int Balde::idgenerator = 0;
-int Balde::cargaCounter = 0;
 Balde::Balde(int n,Diretorio* d,int M) {
     dir = d;
-    id = ++idgenerator;
+    id = d->getNewBaldeId(); //indentificação dos baldes, usada para facilitar visualização no debug
     dLocal = 1;
     numeroBytes = n;
     cargaMax = M;
@@ -14,6 +12,9 @@ Balde::Balde(int n,Diretorio* d,int M) {
     for (int i = 0; i < M; i++) 
         k[i] = "";
 }
+void Balde::cargaUp() { dir->cargaUp(); carga++; }
+void Balde:: cargaDo() { dir->cargaDo(); carga--; }
+
 int Balde::busca(std::string chave) {
 
     for (int i = 0; i < cargaMax; i++) {
@@ -26,10 +27,12 @@ int Balde::busca(std::string chave) {
 bool Balde::remove(std::string chave) {
 
     int indice = busca(chave);
-    if (indice == -1) return false;
+    if (indice != -1){
     k[indice]="";
     cargaDo();
     return true;
+    }
+    return false;
 }
 
 bool Balde::insere(std::string chave) {
@@ -59,7 +62,6 @@ int Balde::reInsert(std::string subchave) {
             std::string auxS = k[i];
             remove(auxS);
             aux++;
-            carga--;
             dir->insere(auxS);
 
         }

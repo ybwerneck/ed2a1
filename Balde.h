@@ -14,12 +14,13 @@ class Balde
 	static int* dGlobal;
 	int numeroBytes;
 	Diretorio*  dir;
+	void cargaUp();
+	void cargaDo();
+
 public:
 	Balde(int n,Diretorio* d,int m);
 
-	static int idgenerator;
-	static int cargaCounter;
-
+	
 	int busca(std::string chave);
 	bool insere(std::string chave);
 	bool remove(std::string chave);
@@ -28,8 +29,7 @@ public:
 	int getDlocal() { return dLocal; }
 	void setDlocal(int prof) { dLocal = prof; }
 	int getCarga() { return carga; }
-	void cargaUp() { cargaCounter++; carga++; }
-	void cargaDo() { cargaCounter--; carga--; }
+
 	
 	int getMaxCarga() { return cargaMax; }
 	void print();

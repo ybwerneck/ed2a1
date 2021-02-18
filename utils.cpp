@@ -1,6 +1,6 @@
 #include<iostream>
 #include <cmath>
-
+#include <time.h>
 #include "utils.h"
 std::string integerToByte(int n, int numBytes) {
 	int num= n;
@@ -31,6 +31,7 @@ int bytesToInteger(std::string bytes) {
 
 }
 int random(int min, int max) {
+
 	return rand() % (max + 1 - min) + min;
 
 }

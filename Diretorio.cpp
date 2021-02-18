@@ -13,9 +13,11 @@ void Diretorio::startDirs() {
 
 }
 double Diretorio::getFatorCarga() {
-	return (double)Balde::cargaCounter / (double) (Balde::idgenerator*M);
+	return ((double)cargaCounter /( (double) idgenerator*M));
 }
 Diretorio::Diretorio(int nBytes,int m) {
+	cargaCounter = 0;
+	idgenerator = 0;
 	nB = nBytes;
 	M = m;
 	dGlobal = 2;
@@ -46,20 +48,19 @@ bool Diretorio::split(std::string subchave) {
 		}
 	baldeNovo->setDlocal(baldeAntigo->getDlocal() + 1);
 	baldeAntigo->setDlocal(baldeAntigo->getDlocal() + 1);
-    
-	baldeAntigo->reInsert(aux);
+		baldeAntigo->reInsert(aux);
 
 
 	return true;
 }
+int a = 0;
 bool Diretorio::insere(std::string chave) {
-
+	a++;
 	if (busca(chave))
 		return false; //nao insere chaves repetidas
 	std::string aux = chave.substr(0, dGlobal); //primerios n bits significantes, n= profundidade globa
 	int indexBalde = bytesToInteger(aux);
 	Balde* b = baldes[indexBalde];
-	bool ab = baldes[indexBalde]->hasSpace();
 	if (baldes[indexBalde]->hasSpace()) {
 		baldes[indexBalde]->insere(chave);
 
@@ -74,7 +75,8 @@ bool Diretorio::insere(std::string chave) {
 		return insere(chave);
 
 	std::cout << "tabela cheia!";
-	return false;
+
+return false;
 }
 void Diretorio::printdir() {
 	for (int i = 0; i < pow(2, dGlobal); i++) {
@@ -86,7 +88,7 @@ void Diretorio::printdir() {
 bool Diretorio::busca(std::string chave) {
 	std::string aux = chave.substr(0, dGlobal); //primerios n bits significantes
 	int indexBalde = bytesToInteger(aux);
-	Balde* b = baldes[indexBalde]; baldes[1];
+	Balde* b = baldes[indexBalde]; 
 	return b->busca(chave)!=-1;
 }
 bool Diretorio::aprofundar() {
