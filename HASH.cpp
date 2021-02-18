@@ -101,7 +101,7 @@ int main()
 	//  A ideia foi construir um progama que cumprisse todos os requisitos do documento enunciado e ao mesmo tempo que permitisse a rapida realização
 	// de varios conjuntos de teste( T1 e T2) para facitar a comparacao das metricas em multiplas instancias de T1 e T2
 	do {
-		std::cout <<std::endl <<"Imprimir ?"<<std::endl<<" 1- Imprime T1 (N entradas) 2-Imprime T2 (N entradas com bytes iniciais iguais)  3-Imprime metricas"<<std::endl<<"  5-Sair"<<std::endl;
+		std::cout <<std::endl <<"Imprimir ?"<<std::endl<<" 1- Imprime T1 (N entradas) 2-Imprime T2 (N entradas com bytes iniciais iguais)  3-Imprime metricas"<<std::endl<<"  4-Sair"<<std::endl;
 		scanf("%d", &op);
 		switch (op) {
 		case 1:
@@ -117,6 +117,6 @@ int main()
 			std::cout << std::endl << "T2 - FATOR DE CARGA " << dir2.getFatorCarga() << " com " << dir2.getBaldeCount() << " baldes e carga"<<dir2.getCarga()<<std::endl;
 			break;
 	}
-	} while (op != 5);
+	} while (op != 4);
 }
 
